@@ -1,0 +1,233 @@
+@font-face {
+  font-family: 'CooperHewitt-Medium';
+  src: url('font/CooperHewitt-Medium.otf'); }
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: CooperHewitt-Medium; }
+html, body, #map {
+	height: 100%;
+	width: 100%; }
+
+
+
+/*button controls are fixed to bottom of screen*/
+.the_app #controls {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	left: 52vmin;
+	z-index: 20; }
+button {
+	background: #555;
+	color: #fff;
+	padding: 0px 10px; }
+.stop_selector_app #controls {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center; }
+.stop_selector_app button {
+	background: orange;
+	border-color: black; 
+	font-size: 3vmin;
+	padding: 1vmin; }
+
+
+
+/*hide things when they need to be hidden*/
+#unfillscreen,
+.stop_selector_app #fillscreen {
+	display: none; }
+.the_app #select,
+.the_app #location {
+	display: none; }
+/* TODO these will eventually need to be made compatible with other browsers*/
+html:-moz-full-screen #fillscreen {
+	display: none; }
+html:-moz-full-screen #unfillscreen {
+	display: initial; }
+
+/* this should never be displayed. it is only there for javascript. probably a better way to do this, I know*/
+#predictionBox .shape_id {
+	display: none; }
+
+/*do not display headsigns or arrows until both can be shown*/
+#predictionBox li img.arrow.not-ready,
+#predictionBox li img.arrow.not-ready + .headsign {
+	display: none; }
+
+
+
+
+#predictionBox {
+	opacity: 0.9;
+	position: fixed;
+	top:0;
+	right:0; }
+#predictionBox li {
+	position: relative;
+	display: block;
+	float: right;
+	clear: both;
+	color: #fff;
+	text-align: right;
+	list-style: none; }
+#predictionBox .time::after {
+	content: 'minutes'; }
+#predictionBox li span.time::before {
+	content: ' in '; }
+
+#predictionBox li .headsign,
+#predictionBox img.arrow {
+	width: 10vmin;
+	height: 10vmin;
+	padding: 0vmin 1vmin; 
+	top: 3vmin; }
+
+#predictionBox li .headsign {
+	display: table-cell;
+	position: absolute;
+	font-size: 2.2vmin;
+	left: 1vmin;
+	text-align: center;
+	overflow: hidden; }
+
+#predictionBox img.arrow {
+	position: relative;
+	display: inline;
+	opacity: 0.5; }
+
+#predictionBox {
+	max-width: 50vmin; }
+#predictionBox li {
+	margin: 1vmin 0vmin;
+	padding: 0px 10px;
+	font-size: 11vmin;
+	min-width: 11vmin; }
+
+#predictionBox .time::after {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+	font-size: 3vmin; }
+#predictionBox li span.route { /*has to be that specific to override later style*/
+	display: inline;
+	position: relative;
+	top: 2vmin; }
+
+
+#predictionBox li span.time::before {
+	font-size: 5vmin; }
+
+#errorMessage {
+	position: fixed; 
+	z-index: 10;
+	display: absolute;
+	font-size: 5vmin;
+	color: white;
+	background: red;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 1vmin;
+	text-align: center;
+	opacity: 0.9; }
+
+/* screen is taller than wide */
+@media screen and (orientation:portrait) {
+
+	#predictionBox {
+		max-width: 100vmin; }
+
+	#predictionBox :first-child .route,
+	#predictionBox :first-child .time {
+			font-size: 1.5em; }
+	#predictionBox :first-child .headsign {
+		width: 15vmin;
+		height: 15vmin;
+		font-size: 3.3vmin; }
+	#predictionBox :first-child img.arrow {
+		width: 15vmin;
+		height: 15vmin; }
+	#predictionBox :first-child .time::before { /* 'in' */
+		font-size: 7.5vmin; }
+	#predictionBox :first-child .time::after { /* 'minutes' */
+		font-size: 4.5vmin; }
+
+}
+
+/* screen in landscape orientation */
+@media screen and (orientation:landscape) {
+
+	#predictionBox :first-child {
+		position: fixed;
+		left: 0;
+		top: 0;
+		margin: 0; }
+
+	/* first arrival prediction */
+	#predictionBox :first-child .route,
+	#predictionBox :first-child .headsign,
+	#predictionBox :first-child .time {
+		position: fixed;
+		text-align: left;
+		background: none; }
+	#predictionBox :first-child span.route::after,
+	#predictionBox :first-child span.time::before {
+		display: none; }
+
+
+	#predictionBox :first-child {
+		height: 100%;
+		width: 50vmin; }
+
+	/* headsign and heading */
+	#predictionBox :first-child img.arrow {
+		top: 3vmin;
+		width: 20vmin;
+		height: 20vmin; }
+
+	#predictionBox :first-child .headsign {
+		display: table-cell;
+		vertical-align: middle;
+		height: 23vmin;
+		width: 20vmin;
+		top: 2vmin;
+		left: 30vmin;
+		font-size: 4vmin; }
+
+
+	/*ROUTE*/
+	#predictionBox :first-child .route {
+		display: initial;
+		z-index:2;
+		top: 0%;
+		left: 0;
+		font-size: 25vmin;
+		height: 25vmin; }
+/*
+	#predictionBox :first-child .route::before {
+		content: ''; }
+	#predictionBox li .route::before {
+		content: 'route # ';
+		font-size: 2vmin; }
+*/
+	#predictionBox :first-child .time {
+		top: 30vmin;
+		left: 2vmin;
+		line-height: 1;
+		font-size: 70vmin; }
+	#predictionBox :first-child .time.two-digit {
+		font-size: 40vmin; }
+
+	#predictionBox :first-child .time::after { /* "minutes" */
+		position: fixed;
+		top: 87vmin;
+		font-size: 13.5vmin;
+		left: 2vmin;
+		text-align: left; }
+
+}

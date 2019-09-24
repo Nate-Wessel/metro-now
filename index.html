@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cincy Transit Real-time Display</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Real-time arrival display for Cincinnati metro" />
+	<meta name="keywords" content="SORTA, Metro, real-time, TANK, bus, transit, schedule, map, Cincinnati">
+	<!-- local leaflet include -->
+	<script type='text/javascript' src="leaflet/leaflet-src.js"></script>
+	<link rel="stylesheet" href="leaflet/leaflet.css"/>
+	<!-- uncreatively named JavaScript and CSS files for this app -->
+	<script type='text/javascript' src="script.js"></script>
+	<link rel="stylesheet" href="style.css"> 
+</head>
+<!-- on load, a function from script.js is called, initiating the app -->
+<body onload="start()" class="the_app">
+	<!-- container for the leaflet-generated web map -->
+	<div id="map"></div>
+	<!-- Button controls Javascript and CSS used to display only those which are relevant -->
+	<div id="controls">
+		<button id="location" type="button" onclick="getMyLocation()" >Where am I?</button>
+		<button id="select" type="button" onclick="selectSelectedStops()" >Use selected stop(s)</button>
+		<button id="fillscreen" type="button" onclick="makefull()" >Fill screen</button>
+		<button id="unfillscreen" type="button" onclick="unfill()" >Unfill screen</button>
+		<a href="/rt/">
+			<button id="newstops" type="button" >Select new stops</button>
+		</a>
+	</div>
+	<!-- contains a javascript-generated list of upcoming departures -->
+	<!-- CSS used to display the first item differently -->
+	<div id="predictionBox"></div>
+	<!-- '<div id="errorMessage">' goes here when there are no buses coming-->
+</body>
+</html> 
